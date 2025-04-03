@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %} Add post {% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1>Add post</h1>
+        <form action="{{ url_for('add_post') }}" method="POST" class="add-post-form">
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+                <label for="category">Category</label>
+                <select id="category" name="category_id">
+                    {% for c in categories %}
+                        <option value="{{ c.id }}">{{ c.title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="content">Text</label>
+                <textarea id="text" name="text" required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        <div class="back-link">
+            <a href="{{ url_for('index') }}" class="back-btn">Back to home</a>
+        </div>
+    </div>
+{% endblock %}
